@@ -1,0 +1,27 @@
+---
+title: "Introductions"
+---
+
+The application investigates the **exponential distribution** in R and compare it with the **Central Limit Theorem**(CLT).
+
+The [central limit theorem](https://en.wikipedia.org/wiki/Central_limit_theorem) states that given certain conditions, the arithmetic mean of a sufficiently large number of iterates of independent random variables, each with a well-defined expected value and well-defined variance, will be approximately normally distributed. 
+
+The [exponential distribution](https://en.wikipedia.org/wiki/Exponential_distribution) is known to have **mean = 1/lambda** and **standard deviation** is equal to the mean. 
+
+In this assignment, We will simulate **exponential distribution** in R with **rexp(n, lambda)** and the ***Shiny*** is used to develop application, using a dynamic UI with different number of parameters:
+
+* **Lambda size**: 0.1 to 0.5
+* **Sampling size**: 10 to 80
+* **Number of simulations**: 100 to 10000
+
+####Key Observations
+
+* There is different when lambda size, Sampling size and Number of simulations are small
+* When lambda size = 0.2, Sampling size increases to 40 and Simulations is 1000, Exponential distribution closes to normal distribution
+* When Number of simulation large enough (10000), Exponential distribution is similar to normal distribution regardless of Lambda size and Sampling size
+
+
+####Conclusion: 
+When the number of simulation increase(large enough), there is evolution from Exponential to Normal distribution(Central Limit Theorem) 
+
+#####[Source Code](https://github.com/hhdinhgithub/shinyapps) 

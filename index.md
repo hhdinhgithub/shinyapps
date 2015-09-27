@@ -1,0 +1,114 @@
+---
+title       : Developing Data Products
+subtitle    : Exponential distribution vs Central Limit Theorem
+author      : Dinh Huy Hoang, 25 Sep 2015
+job         : 
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : [mathjax, quiz, bootstrap]            # {mathjax, quiz, bootstrap}
+mode        : standalone # {standalone, draft,selfcontained}
+knit        : slidify::knit2slides
+---
+
+## Exponential distribution in R and compare it with the Central Limit Theorem (CLT)
+
+<br>
+`1) Central Limit Theorem`
+
+  * States that the distribution of averages of iid variables (properly normalized)
+  * Becomes that of a standard normal distribution as the sample size n increases large enough
+
+<br>
+`2) The exponential distribution` 
+  
+  * Have mean = 1/lambda 
+  * Standard deviation is equal to the mean.
+
+<br>
+`3) Investigate how the arithmetic mean of Exponential distribution iid variables converges to a normal distribution.` 
+
+
+--- .class #id 
+
+## Exponential distribution 
+
+* Use rexp(n, lambda) in R to simulate the exponential distribution 
+* Lambda is the rate parameter and set 0.2
+* Sampling size is given 40
+* Number of simulation is given 1000
+
+
+```r
+set.seed(100)       # For reproducible 
+lambda <- 0.2; sam <- 40; sim <- 1000       # lambda, sampling size, number of distributions 
+means <- NULL       # set msn to null to avoid duplication data 
+for (i in 1 : sim) means <- c(means, mean(rexp(sam,lambda))) 
+sample_mean <- data.frame(means) 
+th_mean <- 1/lambda                               # Theoretical mean
+average <- mean(sample_mean$means)                # Simulation mean
+th_var  <- ((1/lambda)^2)/sam                     # Theoretical variance 
+var_mean<- var(sample_mean$means)                 # variance of the means 
+```
+
+--- .class #id
+## Exponential distribution (cont 2)
+
+
+```r
+print(th_mean); print(average)
+```
+
+```
+## [1] 5
+```
+
+```
+## [1] 4.999702
+```
+* The result of mean is quite similar between simulation and Theory 
+
+```r
+print(th_var); print(var_mean)
+```
+
+```
+## [1] 0.625
+```
+
+```
+## [1] 0.6432442
+```
+* The result of variance of mean is close between simulation and Theory 
+
+--- .class #id
+
+## Exponential distribution (cont 3)
+* Increase number of simulation to 10000
+
+
+
+```r
+print(th_mean); print(average); print(th_var); print(var_mean)
+```
+
+```
+## [1] 5
+```
+
+```
+## [1] 4.994001
+```
+
+```
+## [1] 0.625
+```
+
+```
+## [1] 0.6258965
+```
+
+* The result of mean and variance of the mean is similar between simulation and Theory 
+
+`Conclusion`: When the number of simulation increase(large enough), there is evolution from Exponential to Normal distribution(Central Limit Theorem) 
+
